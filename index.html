@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G. Sreelakshmi Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the reference's three-column hero (greeting | portrait | expertise), then a QA notebook of test cases and bug tickets */
+:root{
+  --bg:#e4e7ea; --surface:#f2f4f5; --ink:#15181b; --muted:#5a636b; --line:#c9cfd4;
+  --coral:#e5484d; --coral-soft:#fbe2e2; --cyan:#17b8d6; --pass:#1f9d55; --warn:#c98a0b;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Outfit", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:20px;padding-block:0}
+.wrap{max-width:1180px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--body);color:var(--coral);font-size:.95rem;font-weight:500;letter-spacing:.02em}
+.mono{font-family:var(--mono)}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:28px;flex-wrap:wrap}
+.logo{font-weight:600;font-size:1.5rem;letter-spacing:-.01em;position:relative}
+.logo i{position:absolute;left:100%;bottom:-6px;width:8px;height:8px;border-radius:50%;background:var(--coral);margin-left:2px}
+.navlinks{display:flex;gap:28px;font-size:.95rem}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:32px;align-items:center;padding-block:24px 56px;position:relative}
+.hero-left{min-width:0}
+.hero h1{font-size:clamp(2.8rem,5.2vw,4.4rem);line-height:1.05}
+.hero h1 span{color:var(--coral)}
+.role{font-size:1.35rem;font-weight:500;margin-top:14px}
+.role small{display:block;font-size:.95rem;color:var(--muted);font-weight:400;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:14px;margin-top:36px;background:var(--coral);color:#fff;text-decoration:none;font-weight:500;padding:6px 6px 6px 20px;border-radius:8px;border:0;font-family:var(--body);font-size:1rem;cursor:pointer}
+.btn b{display:grid;place-items:center;width:40px;height:36px;border-radius:6px;background:rgba(255,255,255,.22);font-weight:400;transition:transform .2s}
+.btn:hover b{transform:translateX(4px)}
+
+.portrait{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:200px 200px 24px 24px;background:var(--surface);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.photo-slot{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:.85rem}
+.initials{font-family:var(--display);font-size:7rem;line-height:1;color:var(--ink);opacity:.9}
+.initials em{color:var(--coral);font-style:normal}
+.photo-slot p{margin:10px 0 0}
+.ticket{position:relative;margin:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-family:var(--mono);font-size:.75rem;line-height:1.5}
+.ticket .row{display:flex;justify-content:space-between;gap:8px}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.7rem;font-family:var(--mono)}
+.chip.s1{background:var(--coral-soft);color:var(--coral)}
+.chip.pass{background:color-mix(in srgb,var(--pass) 16%,transparent);color:var(--pass)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.ring{position:absolute;border-radius:50%}
+.ring.a{width:64px;height:64px;border:3px solid var(--cyan);top:-8px;right:4%}
+.ring.b{width:24px;height:24px;border:3px solid var(--coral);top:-14px;right:calc(4% - 4px);background:var(--bg)}
+.ring.c{width:30px;height:30px;background:var(--cyan);top:70px;right:-6px}
+
+.hero-right{min-width:0}
+.hero-right h2{font-family:var(--body);font-weight:500;font-size:1.55rem;line-height:1.35;margin-top:8px}
+.hero-right p{color:var(--muted);margin:18px 0 0;max-width:34ch}
+.link{display:inline-block;margin-top:24px;color:var(--coral);text-decoration:none;border-bottom:2px solid var(--coral);padding-bottom:2px;font-weight:500}
+
+.strip{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-block:20px;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+.strip .stats{display:flex;gap:40px;flex-wrap:wrap}
+.strip strong{display:block;font-family:var(--display);font-weight:400;font-size:1.8rem;color:var(--ink);line-height:1.1}
+
+/* sections */
+section{padding-block:72px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.1;margin-top:6px}
+.head p{color:var(--muted);max-width:44ch;margin:0}
+
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.skill .tag{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.skill h3{font-size:1.4rem}
+.skill p{margin:0;color:var(--muted)}
+.skill ul{list-style:none;padding:0;margin:4px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.skill li{font-size:.82rem;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.meter{height:6px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:auto}
+.meter i{display:block;height:100%;background:var(--coral);border-radius:6px}
+.meter.learn i{background:var(--cyan)}
+.meter-label{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+
+/* experience */
+.exp{display:grid;grid-template-columns:1fr 1.6fr;gap:20px}
+.job{background:var(--ink);color:var(--bg);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.job .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;opacity:.65}
+.job h3{font-size:1.7rem;line-height:1.15}
+.job p{margin:0;opacity:.8}
+.job .product{margin-top:auto;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.job .product strong{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--coral)}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mod{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+.mod h4{margin:0 0 4px;font-size:1rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.mod h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);flex:none}
+.mod p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:2px solid var(--ink)}
+.step{padding:20px 18px 0 0;min-width:0}
+.step .n{font-family:var(--mono);font-size:.8rem;color:var(--coral)}
+.step h3{font-family:var(--body);font-weight:600;font-size:1.05rem;margin:8px 0 6px}
+.step p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* notebook */
+.notebook{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}
+.card header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+th,td{text-align:left;padding:12px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:0}
+td.id{font-family:var(--mono);font-size:.8rem;white-space:nowrap}
+.bug{padding:20px;display:flex;flex-direction:column;gap:14px}
+.bug h3{font-family:var(--body);font-weight:600;font-size:1.1rem}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:.88rem}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.bug ol{margin:0;padding-left:20px;font-size:.88rem}
+.note{font-size:.8rem;color:var(--muted);margin-top:14px}
+
+/* ai */
+.ai{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ai p{color:var(--muted)}
+.flow{display:flex;flex-direction:column;gap:10px}
+.flow div{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.flow b{font-family:var(--mono);font-weight:500;font-size:.8rem;color:var(--cyan);min-width:68px}
+.flow span{font-size:.95rem}
+.flow .human b{color:var(--coral)}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:56px clamp(24px,5vw,64px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.contact h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1}
+.contact h2 span{color:var(--coral)}
+.contact p{opacity:.75;margin:16px 0 0}
+.lines{display:flex;flex-direction:column;gap:12px}
+.line{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);border-radius:12px;padding:14px 18px;flex-wrap:wrap}
+.line small{display:block;opacity:.6;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.line span{word-break:break-all}
+.copy{background:transparent;border:1px solid color-mix(in srgb,var(--bg) 40%,transparent);color:inherit;border-radius:8px;padding:6px 12px;font-family:var(--body);cursor:pointer;font-size:.85rem}
+.copy:hover{border-color:var(--coral);color:var(--coral)}
+footer{padding-block:32px;text-align:center;color:var(--muted);font-size:.85rem}
+
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr 1fr}
+  .hero-right{grid-column:1/-1}
+  .skills{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(3,1fr);row-gap:24px}
+  .notebook,.ai,.contact,.exp{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .hero{grid-template-columns:1fr}
+  .portrait{max-width:340px;width:100%;margin-inline:auto}
+  .skills,.modules{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .navlinks{display:none}
+  .ring.c{right:6px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-left,.portrait,.hero-right{animation:rise .7s ease both}
+  .portrait{animation-delay:.08s}.hero-right{animation-delay:.16s}
+  @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+}
+</style>
+<style>html{scroll-behavior:smooth}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="logo">Sreelakshmi<i></i></div>
+    <div class="navlinks">
+      <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#process">Process</a><a href="#work">Sample work</a><a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-left">
+      <h1>Hi,<br>I’m <span>Sreelakshmi</span></h1>
+      <div class="role">QA Engineer at Deeptaai<small>Manual testing · Learning Playwright automation with TypeScript</small></div>
+      <a class="btn" href="#contact">Hire Me <b>→</b></a>
+    </div>
+
+    <div class="portrait" aria-label="Profile photo placeholder">
+      <span class="ring a"></span><span class="ring b"></span><span class="ring c"></span>
+      <div class="photo-slot">
+        <div><div class="initials">G<em>.</em>S</div><p>Your photo goes here</p></div>
+      </div>
+      <div class="ticket">
+        <div class="row"><span>BUG · Funnels</span><span class="chip s1">S1 · Critical</span></div>
+        <div class="row"><span>Found before release</span><span class="chip pass">Verified ✓</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="eyebrow">Expert on</div>
+      <h2>Finding bugs before your users do, one test case at a time.</h2>
+      <p>I test Klaritics, a product analytics platform, where a wrong number on a chart can mislead a whole team. I write thorough test cases by hand, use AI to widen coverage, and keep digging until every edge case has been tried.</p>
+      <a class="link" href="#work">See my sample work ↓</a>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="stats">
+      <div><strong>1 yr</strong>QA experience</div>
+      <div><strong>Klaritics</strong>Product analytics platform</div>
+      <div><strong>Playwright</strong>Currently learning</div>
+    </div>
+    <div class="mono">status: open_to_opportunities</div>
+  </div>
+
+  <section id="experience">
+    <div class="head">
+      <div><div class="eyebrow">Experience</div><h2>Where I test today</h2></div>
+      <p>One year of hands-on QA on a product analytics platform, covering every module from raw events to the dashboards built on them.</p>
+    </div>
+    <div class="exp">
+      <article class="job">
+        <span class="tag">Aug 2025 – Present · Hyderabad</span>
+        <h3>QA Engineer (Manual)</h3>
+        <p>Deeptaai Pvt Ltd</p>
+        <p>Functional, regression and UI testing across the product. I check that what users see in reports matches the data underneath.</p>
+        <div class="product"><span>Product tested</span><strong>Klaritics</strong></div>
+      </article>
+      <div class="modules">
+        <div class="mod"><h4>Insight widgets</h4><p>Chart types, filters, date ranges and the numbers each widget shows.</p></div>
+        <div class="mod"><h4>Funnels</h4><p>Step order, conversion and drop-off rates, and time-window rules.</p></div>
+        <div class="mod"><h4>Cohorts</h4><p>Cohort rules, membership counts and how cohorts apply across reports.</p></div>
+        <div class="mod"><h4>Third-party cohorts</h4><p>Imported cohorts, sync status and matching against existing users.</p></div>
+        <div class="mod"><h4>Engagement matrix</h4><p>Frequency and recency buckets and the user counts behind each cell.</p></div>
+        <div class="mod"><h4>User profiles</h4><p>Profile properties, activity timelines and search.</p></div>
+        <div class="mod"><h4>Event taxonomy</h4><p>Event and property naming, types, and how changes flow into reports.</p></div>
+        <div class="mod"><h4>Product analytics</h4><p>End-to-end checks from tracked events to the final dashboard.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="head">
+      <div><div class="eyebrow">What I do</div><h2>Skills I test with</h2></div>
+      <p>A manual tester first, growing into automation. Each skill below is something I use at work or am actively building.</p>
+    </div>
+    <div class="skills">
+      <article class="skill">
+        <span class="tag">Core · daily</span>
+        <h3>Manual testing</h3>
+        <p>Writing and running test cases, logging defects with clear steps, and retesting fixes until they hold.</p>
+        <ul><li>Functional</li><li>Regression</li><li>Smoke &amp; sanity</li><li>UI / UX</li><li>Exploratory</li></ul>
+        <div class="meter-label"><span>Hands-on</span><span>1 year</span></div>
+        <div class="meter"><i style="width:80%"></i></div>
+      </article>
+      <article class="skill">
+        <span class="tag">Speed · coverage</span>
+        <h3>AI-assisted test design</h3>
+        <p>Using AI to draft test cases from requirements, then reviewing each one and adding the edge cases it missed.</p>
+        <ul><li>Prompting</li><li>Edge cases</li><li>Negative tests</li><li>Review &amp; refine</li></ul>
+        <div class="meter-label"><span>In use</span><span>Daily</span></div>
+        <div class="meter"><i style="width:70%"></i></div>
+      </article>
+      <article class="skill">
+        <span class="tag">Learning now</span>
+        <h3>Playwright + TypeScript</h3>
+        <p>Building automated UI tests: locators, assertions, page objects, and turning my manual cases into scripts.</p>
+        <ul><li>Playwright</li><li>TypeScript</li><li>Locators</li><li>Assertions</li></ul>
+        <div class="meter-label"><span>Learning</span><span>In progress</span></div>
+        <div class="meter learn"><i style="width:40%"></i></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="head">
+      <div><div class="eyebrow">How I work</div><h2>From requirement to verified fix</h2></div>
+      <p>The same five steps for every feature I test.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><h3>Understand</h3><p>Read the requirement and list what could go wrong.</p></div>
+      <div class="step"><span class="n">02</span><h3>Design</h3><p>Write test cases by hand, then widen them with AI.</p></div>
+      <div class="step"><span class="n">03</span><h3>Execute</h3><p>Run positive, negative and boundary scenarios.</p></div>
+      <div class="step"><span class="n">04</span><h3>Report</h3><p>Log bugs with steps, evidence and severity.</p></div>
+      <div class="step"><span class="n">05</span><h3>Retest</h3><p>Verify the fix and run regression around it.</p></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="head">
+      <div><div class="eyebrow">Sample work</div><h2>How my test cases and bug reports read</h2></div>
+      <p>Illustrative examples on a funnel report, written the way I write them at work.</p>
+    </div>
+    <div class="notebook">
+      <div class="card">
+        <header><span>Module: Funnels · Suite: Regression</span><span>4 cases</span></header>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>ID</th><th>Scenario</th><th>Expected result</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="id">TC-FN-01</td><td>Create a 3-step funnel with valid events</td><td>Funnel saves and shows counts per step</td><td><span class="chip pass">Pass</span></td></tr>
+              <tr><td class="id">TC-FN-02</td><td>User completes steps out of order</td><td>User not counted as converted</td><td><span class="chip s1">Fail</span></td></tr>
+              <tr><td class="id">TC-FN-03</td><td>Apply a cohort filter to the funnel</td><td>Only cohort members are counted</td><td><span class="chip pass">Pass</span></td></tr>
+              <tr><td class="id">TC-FN-04</td><td>Date range crosses a timezone change</td><td>Events land on the correct day</td><td><span class="chip warn">Blocked</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <header><span>BUG-FN-017</span><span class="chip s1">High · P1</span></header>
+        <div class="bug">
+          <h3>Out-of-order steps counted as conversions</h3>
+          <dl class="kv">
+            <dt>Environment</dt><dd>Staging · Chrome · Windows 11</dd>
+            <dt>Linked case</dt><dd class="mono">TC-FN-02</dd>
+            <dt>Status</dt><dd>Fixed → Verified</dd>
+          </dl>
+          <ol>
+            <li>Create a funnel: Sign up → Add to cart → Purchase.</li>
+            <li>Send events for a test user in the order Purchase → Sign up → Add to cart.</li>
+            <li>Open the funnel report.</li>
+          </ol>
+          <dl class="kv">
+            <dt>Expected</dt><dd>Test user does not reach step 3.</dd>
+            <dt>Actual</dt><dd>Test user shown as converted.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <p class="note">Illustrative examples written for this portfolio, not copied from internal tickets.</p>
+  </section>
+
+  <section>
+    <div class="ai">
+      <div>
+        <div class="eyebrow">Manual + AI</div>
+        <h2 style="font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.1;margin-top:6px">AI drafts fast. I make sure nothing slips through.</h2>
+        <p>I use AI to turn a requirement into a first set of test cases in minutes. Then I review every case, remove what doesn’t apply, and add the tricky scenarios that only come from knowing the product.</p>
+      </div>
+      <div class="flow">
+        <div><b>INPUT</b><span>Requirement or user story</span></div>
+        <div><b>AI</b><span>Draft positive and negative cases</span></div>
+        <div class="human"><b>ME</b><span>Review, fix and add edge cases</span></div>
+        <div class="human"><b>ME</b><span>Execute, report and retest</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div>
+        <h2>Need someone to <span>break it</span> before your users do?</h2>
+        <p>I’m open to QA roles where I can keep testing manually and grow into Playwright automation.</p>
+      </div>
+      <div class="lines">
+        <div class="line"><div><small>Email</small><span id="email">gsree16@gmail.com</span></div><button class="copy" type="button" data-copy="email">Copy</button></div>
+        <div class="line"><div><small>Company</small><span>Deeptaai Pvt Ltd</span></div></div>
+        <div class="line"><div><small>Location</small><span>Hyderabad, India</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 G. Sreelakshmi · QA Engineer</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const el=document.getElementById(b.dataset.copy), t=el.textContent;
+    const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'};
+    try{navigator.clipboard.writeText(t).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+
+</body>
+</html>
